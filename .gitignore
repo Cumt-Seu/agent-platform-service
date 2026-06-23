@@ -1,0 +1,16 @@
+# IDEA配置
+.idea/
+*.iml
+out/
+target/
+# 编译class
+*.class
+# Mac系统隐藏文件
+.DS_Store
+# 日志文件
+*.log
+# 打包产物
+*.jar
+# 缓存
+.mvn/
+build/

@@ -1,0 +1,71 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: business-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/agent_platform?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+# JWT configuration
+jwt:
+  secret: YourSuperSecretKeyForJWTTokenGenerationMinimum256Bits
+  access-token-expiration: 3600000   # 1 hour in ms
+  refresh-token-expiration: 86400000 # 24 hours in ms
+
+# Agent service (Python/LangGraph)
+agent-service:
+  url: http://localhost:8000
+
+# RAG service
+rag-service:
+  url: http://localhost:8001
+
+# GPU node
+gpu-node:
+  url: http://localhost:8002
+
+# File storage
+file-storage:
+  type: local
+  local-path: /tmp/agent-platform/files
+
+# Logging
+logging:
+  level:
+    com.agentplatform: DEBUG
+    org.springframework.security: DEBUG
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+springdoc:
+  api-docs:
+    path: /docs
+  swagger-ui:
+    path: /swagger-ui.html
